@@ -8,7 +8,7 @@
   body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #4b0082, #9b30ff);
+    background: radial-gradient(circle at top, #6a0dad, #3a006e);
     color: white;
     text-align: center;
   }
@@ -26,12 +26,13 @@
     border-radius: 10px;
     border: none;
     outline: none;
-    width: 200px;
+    width: 220px;
     text-align: center;
+    font-size: 16px;
   }
 
   button {
-    margin-top: 10px;
+    margin-top: 12px;
     padding: 10px 25px;
     border: none;
     background-color: white;
@@ -53,23 +54,36 @@
   }
 
   .gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 40px auto;
+    max-width: 1000px;
   }
 
-  .gallery img {
-    width: 250px;
-    height: 250px;
-    object-fit: cover;
+  .photo-frame {
+    width: 100%;
+    aspect-ratio: 1/1;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
     border-radius: 15px;
-    box-shadow: 0 0 10px white;
+    border: 2px solid rgba(255,255,255,0.2);
+    box-shadow: 0 0 15px rgba(255,255,255,0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-style: italic;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .photo-frame img {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    object-fit: cover;
   }
 
   .memory-box {
-    background-color: rgba(255,255,255,0.1);
+    background-color: rgba(255,255,255,0.08);
     margin: 30px auto;
     padding: 20px;
     border-radius: 15px;
@@ -104,14 +118,15 @@
 <body>
 
 <div class="login-container" id="login">
-  <h2>💜 Ata & Merve 💜</h2>
+  <h2>💜 Ata &amp; Merve 💜</h2>
   <p>Giriş yapmak için şifreyi gir:</p>
   <input type="password" id="password" placeholder="Şifre">
   <button onclick="checkPassword()">Giriş Yap</button>
+  <p style="font-size:12px;opacity:0.8;margin-top:10px;">(Şifre: MerveAta)</p>
 </div>
 
 <div class="main-content" id="content">
-  <h1>💞 Ata & Merve’nin Dünyası 💞</h1>
+  <h1>💞 Ata &amp; Merve’nin Dünyası 💞</h1>
   <p>Tanışma Tarihimiz: <strong>16 Ekim 2025</strong></p>
   <div id="countup"></div>
 
@@ -120,18 +135,18 @@
     Tarayıcınız müzik çalmayı desteklemiyor.
   </audio>
 
+  <h2 style="margin-top:40px;">📸 Hatıralarımız</h2>
   <div class="gallery">
-    <!-- BURAYA 10 FOTOĞRAF LİNKİ EKLE -->
-    <img src="resim1_linki_buraya" alt="">
-    <img src="resim2_linki_buraya" alt="">
-    <img src="resim3_linki_buraya" alt="">
-    <img src="resim4_linki_buraya" alt="">
-    <img src="resim5_linki_buraya" alt="">
-    <img src="resim6_linki_buraya" alt="">
-    <img src="resim7_linki_buraya" alt="">
-    <img src="resim8_linki_buraya" alt="">
-    <img src="resim9_linki_buraya" alt="">
-    <img src="resim10_linki_buraya" alt="">
+    <div class="photo-frame">Resim yakında eklenecek 💜</div>
+    <div class="photo-frame">Resim yakında eklenecek 💜</div>
+    <div class="photo-frame">Resim yakında eklenecek 💜</div>
+    <div class="photo-frame">Resim yakında eklenecek 💜</div>
+    <div class="photo-frame">Resim yakında eklenecek 💜</div>
+    <div class="photo-frame">Resim yakında eklenecek 💜</div>
+    <div class="photo-frame">Resim yakında eklenecek 💜</div>
+    <div class="photo-frame">Resim yakında eklenecek 💜</div>
+    <div class="photo-frame">Resim yakında eklenecek 💜</div>
+    <div class="photo-frame">Resim yakında eklenecek 💜</div>
   </div>
 
   <div class="memory-box">
@@ -143,8 +158,9 @@
 
 <script>
 function checkPassword() {
-  const input = document.getElementById('password').value;
-  if (input === "MerveAta") {
+  const raw = document.getElementById('password').value || "";
+  const normalized = raw.replace(/\s+/g, '').toLowerCase();
+  if (normalized === 'merveata') {
     document.getElementById('login').style.display = 'none';
     document.getElementById('content').style.display = 'block';
   } else {
@@ -152,22 +168,17 @@ function checkPassword() {
   }
 }
 
-// Tanışma tarihi sayaç
 const startDate = new Date("2025-10-16T00:00:00");
-
 function updateCountup() {
   const now = new Date();
   const diff = now - startDate;
-
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
   const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
   const minutes = Math.floor((diff / (1000 * 60)) % 60);
   const seconds = Math.floor((diff / 1000) % 60);
-
   document.getElementById('countup').innerHTML =
     `💜 ${days} gün, ${hours} saat, ${minutes} dakika, ${seconds} saniyedir birlikteyiz 💜`;
 }
-
 setInterval(updateCountup, 1000);
 updateCountup();
 </script>
