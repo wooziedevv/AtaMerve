@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ata & Merve</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #4b0082, #9b30ff);
+    color: white;
+    text-align: center;
+  }
+
+  .login-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  input[type="password"] {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    width: 200px;
+    text-align: center;
+  }
+
+  button {
+    margin-top: 10px;
+    padding: 10px 25px;
+    border: none;
+    background-color: white;
+    color: purple;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .main-content {
+    display: none;
+    padding: 20px;
+    animation: fadeIn 1s;
+  }
+
+  h1 {
+    font-size: 2em;
+    margin-top: 20px;
+  }
+
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .gallery img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 0 10px white;
+  }
+
+  .memory-box {
+    background-color: rgba(255,255,255,0.1);
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 15px;
+    width: 80%;
+    max-width: 600px;
+  }
+
+  textarea {
+    width: 100%;
+    height: 120px;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    resize: none;
+  }
+
+  #countup {
+    font-size: 18px;
+    margin-top: 10px;
+  }
+
+  audio {
+    margin-top: 15px;
+  }
+
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+</style>
+</head>
+<body>
+
+<div class="login-container" id="login">
+  <h2>💜 Ata & Merve 💜</h2>
+  <p>Giriş yapmak için şifreyi gir:</p>
+  <input type="password" id="password" placeholder="Şifre">
+  <button onclick="checkPassword()">Giriş Yap</button>
+</div>
+
+<div class="main-content" id="content">
+  <h1>💞 Ata & Merve’nin Dünyası 💞</h1>
+  <p>Tanışma Tarihimiz: <strong>16 Ekim 2025</strong></p>
+  <div id="countup"></div>
+
+  <audio controls autoplay loop>
+    <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
+    Tarayıcınız müzik çalmayı desteklemiyor.
+  </audio>
+
+  <div class="gallery">
+    <!-- BURAYA 10 FOTOĞRAF LİNKİ EKLE -->
+    <img src="resim1_linki_buraya" alt="">
+    <img src="resim2_linki_buraya" alt="">
+    <img src="resim3_linki_buraya" alt="">
+    <img src="resim4_linki_buraya" alt="">
+    <img src="resim5_linki_buraya" alt="">
+    <img src="resim6_linki_buraya" alt="">
+    <img src="resim7_linki_buraya" alt="">
+    <img src="resim8_linki_buraya" alt="">
+    <img src="resim9_linki_buraya" alt="">
+    <img src="resim10_linki_buraya" alt="">
+  </div>
+
+  <div class="memory-box">
+    <h3>📖 Anı Defteri</h3>
+    <textarea placeholder="Anını buraya yaz..."></textarea>
+    <p>Bu anılar kalbimizde sonsuza dek 💜</p>
+  </div>
+</div>
+
+<script>
+function checkPassword() {
+  const input = document.getElementById('password').value;
+  if (input === "MerveAta") {
+    document.getElementById('login').style.display = 'none';
+    document.getElementById('content').style.display = 'block';
+  } else {
+    alert("Yanlış şifre 💔");
+  }
+}
+
+// Tanışma tarihi sayaç
+const startDate = new Date("2025-10-16T00:00:00");
+
+function updateCountup() {
+  const now = new Date();
+  const diff = now - startDate;
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+
+  document.getElementById('countup').innerHTML =
+    `💜 ${days} gün, ${hours} saat, ${minutes} dakika, ${seconds} saniyedir birlikteyiz 💜`;
+}
+
+setInterval(updateCountup, 1000);
+updateCountup();
+</script>
+</body>
+</html>
